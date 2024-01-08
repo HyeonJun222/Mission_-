@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 상세보기</title>
+</head>
+<body>
+    <!-- id와 이름을 출력하자 -->
+    <!-- id.name -->
+    <h1>[[${board.id}]]</h1>
+    <h3>[[${board.id}]]</h3>
+    <!-- 상세 내용-->
+    <!-- text -->
+    <p>
+        글 내용:[[$board.text]]
+    </p>
+
+
+
+    <div id="comment">
+        <button type="submit" class="btn btn-dark">
+            <a href="#" class="hyperlink">
+                댓글 작성
+            </a>
+        </button>
+        <button type="submit" class="btn btn-dark">
+            <a href="#" class="hyperlink">
+                댓글 수정
+            </a>
+        </button>
+        <button type="submit" class="btn btn-dark">
+            <a href="#" class="hyperlink">
+                댓글 삭제
+            </a>
+        </button>
+
+    </div>
+
+    <!-- 홈으로 -->
+    <a href="/home">홈</a>
+</body>
+</html>

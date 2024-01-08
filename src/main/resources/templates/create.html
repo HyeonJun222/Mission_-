@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 글 작성페이지</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/MainCS.css}">
+</head>
+<body>
+    <h1>글 작성</h1>
+
+    <form action="/create" method="post">
+        <!-- 글 제목 -->
+        <label for="name-input">
+            글 제목: <input id="name-input" name="name">
+        </label><br>
+        <!-- 글 내용 -->
+        <label for="text-input">
+            내용: <input id="text-input" name="text">
+        </label><br>
+        <!-- 추후 수정, 삭제를 위한 패스워드-->
+        <label for="password-input">
+            비밀번호: <input id="password-input" name="password">
+        </label><br>
+        <!--글 제출-->
+        <button class="btn btn-dark">
+            <a type="submit">제출</a>
+        </button>
+    </form>
+        <button class="btn btn-dark">
+            <a href="/home" class="hyperlink">
+                홈
+            </a>
+        </button>
+</body>
+</html>
