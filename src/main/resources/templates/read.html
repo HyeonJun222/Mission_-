@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>게시글 상세보기</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/MainCS.css}">
 </head>
 <body>
     <!-- id와 이름을 출력하자 -->
     <!-- id.name -->
     <h1>[[${board.id}]]</h1>
-    <h3>[[${board.id}]]</h3>
+    <h3>[[${board.name}]]</h3>
     <!-- 상세 내용-->
     <!-- text -->
     <p>
@@ -37,6 +38,21 @@
     </div>
 
     <!-- 홈으로 -->
-    <a href="/home">홈</a>
+    <a th:href="@{/{id}(id=${board.id})}">홈</a>
+
+    <!-- DELETE -->
+    <form th:action="@{delete/{id}(id=${board.id})}" method="post">
+        <input type="subumit" value="Delete">
+    </form>
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

@@ -8,7 +8,19 @@
 <body>
     <h1>글 작성</h1>
 
-    <form action="/create" method="post">
+    <form th:action="@{/create}" method="post">
+        <!-- 게시판 선택 아직 구현 X -->
+        <label>
+            게시판:
+            <select name = boardSelect>
+                <option value="자유 게시판">자유 게시판</option>
+                <option value="개발 게시판">개발 게시판</option>
+                <option value="일상 게시판">일상 게시판</option>
+                <option value="사건사고 게시판">사건사고 게시판</option>
+            </select>
+        </label><br>
+
+
         <!-- 글 제목 -->
         <label for="name-input">
             글 제목: <input id="name-input" name="name">

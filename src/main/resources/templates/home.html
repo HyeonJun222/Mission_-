@@ -55,7 +55,7 @@
                                 [[${board.id}]]
                             </td>
                             <th>    <!-- 제목 -->
-                                <a href="#!">
+                                <a th:href="@{/read/{id}(id=${board.id})}">
                                     [[${board.name}]]
                                 </a>
                             </th>

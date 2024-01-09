@@ -7,3 +7,10 @@ spring:
       ddl-auto: update
     show-sql: false
     database-platform: org.hibernate.community.dialect.SQLiteDialect
+
+# Mybatis 설정
+mybatis:
+  mapper-locations: "classpath:mybatis/mappers/*.xml"
+  type-aliases-package: "com.example.mybatis.model"
+  configuration:
+    map-underscore-to-camel-case: true

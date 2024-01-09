@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class boardDto {
+public class BoardDto {
     private Long id;
     private String name;
     private String text;

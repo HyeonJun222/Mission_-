@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 글 수정페이지</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/CSS/MainCS.css}">
+</head>
+<body>
+<h1>글 수정 : [[${board.id}]]. [[$board.name]]</h1>
+
+<form th:action="@{/update/{id}(id=${board.id})}" method="post">
+    <!-- 글 제목 -->
+    <label for="name-input">
+        <!--원본의 데이터를 기본 값으로 설정해주자 -->
+        글 제목: <input id="name-input" name="name" th:value="${board.name}">
+    </label><br>
+    <!-- 글 내용 -->
+    <label for="text-input">
+        내용: <input id="text-input" name="text" th:value="${board.text}">
+    </label><br>
+    <!-- 추후 수정, 삭제를 위한 패스워드-->
+    <label for="password-input">
+        비밀번호: <input id="password-input" name="password" th:value="${board.password}">
+    </label><br>
+    <!--글 제출-->
+    <button class="btn btn-dark">
+        <a type="submit">제출</a>
+    </button>
+</form>
+<button class="btn btn-dark">
+    <a th:href="@{/{id}(id=${board.id})}" class="hyperlink">
+        홈
+    </a>
+</button>
+</body>
+</html>
