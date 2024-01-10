@@ -2,7 +2,6 @@ package com.crud.service;
 
 import com.crud.BoardDao;
 import com.crud.dto.BoardDto;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,6 +17,7 @@ public class boardService {
 
     // 사용자의 데이터를 받아서 새로운 학생 객체를 생성해
     // 리스트에 저장한다
+    /*
     public BoardDto createBoard(
             String name,
             String text,
@@ -27,6 +27,16 @@ public class boardService {
         nextId++;
         boardList.add(newBoard);
         return newBoard;
+    }
+
+     */
+
+    public void createBoard(String name, String text, String password){
+        BoardDto dto = new BoardDto();
+        dto.setName(name);
+        dto.setText(text);
+        dto.setPassword(password);
+        dao.createBoard(dto);
     }
 
     // 모든 데이터를 보자

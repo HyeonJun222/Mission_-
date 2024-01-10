@@ -36,8 +36,7 @@ public class createController {
             @RequestParam("password")
             String password
     ){
-        BoardDto board = service.createBoard(name, text, password);
-        log.info(board.toString());
+        service.createBoard(name, text, password);
 
         // double post problem 을 해결하기 위해 (새로고침 시 같은 데이터 무한입력)
         // post redirect get pattern
@@ -49,6 +48,7 @@ public class createController {
     @GetMapping("/home")
     public String home(Model model){
         model.addAttribute("boardList", service.readBoardAll());
+
         return "home";
     }
 
@@ -64,6 +64,7 @@ public class createController {
             Model model
     ){
         BoardDto dto = service.readBoard(id);
+        System.out.println(dto);
         model.addAttribute("board", dto);
         return "read";
     }

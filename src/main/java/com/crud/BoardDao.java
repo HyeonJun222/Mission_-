@@ -26,4 +26,11 @@ public class BoardDao {
         }
 
     }
+    // BoardDto -> 게시물 추가기능
+    public void createBoard(BoardDto dto){
+        try(SqlSession session = sessionFactory.openSession()){
+            boardMapper mapper = session.getMapper(boardMapper.class);
+            mapper.insertBoard(dto);
+        }
+    }
 }
