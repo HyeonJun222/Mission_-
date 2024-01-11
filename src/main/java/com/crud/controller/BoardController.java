@@ -9,19 +9,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class createController {
-    private static final Logger log = LoggerFactory.getLogger(createController.class);
+public class BoardController {
+    private static final Logger log = LoggerFactory.getLogger(BoardController.class);
 
     // service
     private boardService service;
 
-    public createController(boardService boardService){
+    public BoardController(boardService boardService){
         this.service = boardService;
     }
 
     // 생성 사이트
     @GetMapping("/create-view")
     public String createView(){
+        System.out.println("/create-view working");
         return "create";
     }
 
@@ -36,11 +37,14 @@ public class createController {
             @RequestParam("password")
             String password
     ){
+        System.out.println("/create working");
         service.createBoard(name, text, password);
-
+        log.info(name);
+        log.info(text);
+        log.info(password);
         // double post problem 을 해결하기 위해 (새로고침 시 같은 데이터 무한입력)
         // post redirect get pattern
-        // redirect:/create-view
+//        return "redirect:/create-view";
         return "redirect:/home";
     }
 
@@ -48,7 +52,7 @@ public class createController {
     @GetMapping("/home")
     public String home(Model model){
         model.addAttribute("boardList", service.readBoardAll());
-
+        System.out.println("/home working");
         return "home";
     }
 
@@ -57,16 +61,35 @@ public class createController {
     // Mapping 에 {}를 넣으면 그 안에 들어있는 데이터를 @PathVariable("id")
     // 매개변수에 할당해 줄 수 있음
 
+//    @GetMapping("/read/{id}")
+//    public String readOne(
+//            @PathVariable("id")
+//            Long id,
+//            Model model
+//    ){
+//        System.out.println("/read/{id} working (readOnd)");
+//        BoardDto dto = service.readBoard(id);
+//        System.out.println(dto);
+//        model.addAttribute("board", dto);
+//        return "read";
+//    }
+
+    // read 오류를 잡기 위한 시도
+    private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+
     @GetMapping("/read/{id}")
-    public String readOne(
-            @PathVariable("id")
-            Long id,
-            Model model
-    ){
-        BoardDto dto = service.readBoard(id);
-        System.out.println(dto);
-        model.addAttribute("board", dto);
-        return "read";
+    public String readOne(@PathVariable("id") Long id, Model model) {
+        logger.info("/read/{id} working (readOnd)");
+
+        try {
+            BoardDto dto = service.readBoard(id);
+            logger.info("BoardDto: {}", dto);
+            model.addAttribute("board", dto);
+            return "read";
+        } catch (Exception e) {
+            logger.error("Error during readBoard", e);
+            return "error"; // 에러 페이지로 리다이렉트 또는 에러 메시지를 표시하는 뷰를 반환
+        }
     }
 
     // update-view/{id}
@@ -76,6 +99,7 @@ public class createController {
             Long id,
             Model model
     ){
+        System.out.println("/update-view/{id} working");
         BoardDto dto = service.readBoard(id);
         model.addAttribute("board", dto);
         return "update";
@@ -88,12 +112,14 @@ public class createController {
             @RequestParam("text") String text,
             @RequestParam("password") String password
     ){
+        System.out.println("/update/{id} working");
         BoardDto dto = service.updateBoard(id, name, text, password);
         return String.format("redirect:read/%d", dto.getId());
     }
 
     @PostMapping("/delete/{id}")
     public String delete( @PathVariable("id") Long id){
+        System.out.println("/delete/{id} working");
         service.deleteBoard(id);
         return "redirect:/home";
     }

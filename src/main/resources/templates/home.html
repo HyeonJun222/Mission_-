@@ -1,82 +1,92 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NoticeBoard Home</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/CSS/MainCS.css}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NoticeBoard Home</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/CSS/MainCS.css}">
 
 </head>
 <body>
-    <section class="notice">
-        <div class="page-title">
-            <div class="container">
-                <h3>게시판 홈</h3>
-            </div>
-        </div>
+<section class="notice">
+  <div class="page-title">
+    <div class="container">
+      <h3>게시판 홈</h3>
+    </div>
+  </div>
 
-        <!-- board seach area -->
-        <div id="board-search">
-            <div class="container">
-                <div class="search-window">
-                    <form action="">
-                        <div class="search-wrap">
-                            <label for="search" class="blind">공지사항 내용 검색</label>
-                            <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-                            <button type="submit" class="btn btn-dark">검색</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+  <!-- board seach area -->
+  <div id="board-search">
+    <div class="container">
+      <div class="search-window">
+        <form action="">
+          <div class="search-wrap">
+            <label for="search" class="blind">게시판 내용 검색</label>
+            <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+            <button type="submit" class="btn btn-dark">검색</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="article-nav">
+    <div class="container">
+      <ul>
+        <li><a href="/home" class="hyperlink">1. 전체 게시판</a></li>
+        <li><a href="/home/1" class="hyperlink">2. 자유 게시판</a></li>
+        <li><a href="/home/2" class="hyperlink">3. 개발 게시판</a></li>
+        <li><a href="/home/3" class="hyperlink">4. 일상 게시판</a></li>
+        <li><a href="/home/4" class="hyperlink">5. 사건사고 게시판</a></li>
+      </ul>
+    </div>
+  </div>
 
-        <!-- board list area -->
-        <div id="board-list">
-            <div class="container">
-                <table class="board-table">
-                    <thead>
-                    <tr>
-                        <th scope="col" class="th-num">번호</th>
-                        <th scope="col" class="th-title">제목</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <!-- 글이 없는 경우 -->
-                        <tr th:if="${boardList.isEmpty()}">
-                            <td></td>
-                            <th>
-                                <a href="#!">게시글이 없습니다.</a>
-                            </th>
-                        </tr>
+  <!-- board list area -->
+  <div id="board-list">
+    <div class="container">
+      <table class="board-table">
+        <thead>
+        <tr>
+          <th scope="col" class="th-num">번호</th>
+          <th scope="col" class="th-title">제목</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 글이 없는 경우 -->
+        <tr th:if="${boardList.isEmpty()}">
+          <td></td>
+          <th>
+            <a href="#!">게시글이 없습니다.</a>
+          </th>
+        </tr>
 
-                        <!-- 글이 있는 경우 -->
-                        <tr th:unless="${boardList.isEmpty()}" th:each="board: ${boardList}">
-                            <td>    <!-- 번호 -->
-                                [[${board.id}]]
-                            </td>
-                            <th>    <!-- 제목 -->
-                                <a th:href="@{/read/{id}(id=${board.id})}">
-                                    [[${board.name}]]
-                                </a>
-                            </th>
-                        </tr>
-                    </tbody>
-                </table>
-                <div id="footer">
-                    <form action="">
-                        <div class="footer-wrap">
-                            <button type="submit" class="btn btn-dark">
-                                <a href="/create-view" class="hyperlink">
-                                    글 작성
-                                </a>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-    </section>
+        <!-- 글이 있는 경우 -->
+        <tr th:unless="${boardList.isEmpty()}" th:each="board: ${boardList}">
+          <td>    <!-- 번호 -->
+            [[${board.id}]]
+          </td>
+          <th>    <!-- 제목 -->
+            <a th:href="@{/read/{id}(id=${board.id})}">
+              [[${board.name}]]
+            </a>
+          </th>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="footer container">
+    <form action="">
+      <div class="search-wrap">
+        <button type="submit" class="btn btn-dark">
+          <a href="/create-view" class="hyperlink">
+            글 작성
+          </a>
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
 
 </body>
 </html>

@@ -11,6 +11,6 @@ spring:
 # Mybatis 설정
 mybatis:
   mapper-locations: "classpath:mybatis/mappers/*.xml"
-  type-aliases-package: "com.example.mybatis.model"
+  type-aliases-package: "com.crud.dto"
   configuration:
     map-underscore-to-camel-case: true

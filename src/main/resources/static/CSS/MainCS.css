@@ -45,6 +45,7 @@ section.notice {
     top: 0;
     bottom: 0;
     width: 108px;
+    height: 40px;
     padding: 0;
     font-size: 16px;
 }
@@ -179,4 +180,11 @@ section.notice {
     text-align: center;
     text-decoration: none; /* 링크의 밑줄 제거 */
     color: inherit  /* 링크의 색상 제거 */
+}
+ul li{
+    float: left;
+    margin-right: 10px;
+}
+.article-nav{
+
 }
